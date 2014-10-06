@@ -1,8 +1,8 @@
 # Sales Engine
 
-(insert project completion goals for first check-in here)
+Week 1: Be completed with the relationships between csvs.
 
-(insert project completion goals for second check-in here)
+Week 2: Be completed with all find functions and be started on business logic
 
 # Check-in Rubrics
 
