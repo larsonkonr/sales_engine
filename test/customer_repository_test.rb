@@ -53,7 +53,7 @@ class CustomerRepositoryTest < Minitest::Test
     { updated_at: '2012-03-27 14:54:10 UTC', },
     { updated_at: '2012-03-27 14:54:11 UTC', },
     { updated_at: '2012-03-27 14:54:09 UTC', },
-  ].map {|row| Customer.new(row)}
+    ].map {|row| Customer.new(row)}
     assert_equal ["2012-03-27 14:54:09 UTC"],
     CustomerRepository.new(customers).find_by_updated_at("2012-03-27 14:54:09 UTC")
     .map {|customer| customer.updated_at}
