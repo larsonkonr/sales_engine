@@ -1,22 +1,24 @@
-require 'simplecov'
-SimpleCov.start
-require_relative 'test_helper'
-require_relative "../lib/merchant"
+# require 'simplecov'
+# SimpleCov.start
+# require_relative 'test_helper'
+gem 'minitest', '~> 5.2'
+require 'minitest/autorun'
+require 'minitest/pride'
+require_relative "../../lib/classes/merchant"
 
 class MerchantTest < Minitest::Test
 
   attr_reader :merchant, :repository
 
   def setup
+    data = { id: '15',
+            name: 'Cummings-Thiel',
+            created_at: '2012-03-27 14:54:11 UTC',
+            updated_at: '2012-03-27 14:54:11 UTC'
+            }
 
-    @data = {
-      id: '15',
-      name: 'Cummings-Thiel',
-      created_at: '2012-03-27 14:54:11 UTC',
-      updated_at: '2012-03-27 14:54:11 UTC'
-    }
     @repository = Minitest::Mock.new
-    @merchant = Merchant.new(@data)
+    @merchant = Merchant.new(data, repository)
 
   end
 
@@ -36,13 +38,13 @@ class MerchantTest < Minitest::Test
 	end
 
 	def test_it_delegates_items_to_repository
-		repository.expect(:find_items_from, [], ["1"])
+		repository.expect(:find_items_from, [], ["15"])
 		merchant.items
 		repository.verify
 	end
 
 	def test_it_delegates_invoices_to_repository
-		repository.expect(:find_invoices_from, [], ["1"])
+		repository.expect(:find_invoices_from, [], ["15"])
 		merchant.invoices
 		repository.verify
 	end

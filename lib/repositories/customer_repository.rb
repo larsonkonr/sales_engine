@@ -1,4 +1,4 @@
-require_relative '../customer'
+require_relative '../classes/customer'
 
 class CustomerRepository
 

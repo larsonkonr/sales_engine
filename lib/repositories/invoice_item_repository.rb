@@ -1,4 +1,4 @@
-require_relative '../invoice_item'
+require_relative '../classes/invoice_item'
 
 class InvoiceItemRepository
 

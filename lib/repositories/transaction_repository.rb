@@ -1,4 +1,4 @@
-require_relative '../transaction'
+require_relative '../classes/transaction'
 
 class TransactionRepository
 

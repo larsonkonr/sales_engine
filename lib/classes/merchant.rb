@@ -1,5 +1,5 @@
 class Merchant
-  attr_reader:repository
+  attr_reader :repository
 
   ATTRIBUTES = [:id,
                 :name,
@@ -8,12 +8,12 @@ class Merchant
 
   attr_reader *ATTRIBUTES
 
-  def initialize(data)
+  def initialize(data, repository)
     @id            = data[:id]
     @name          = data[:name]
     @created_at    = data[:created_at]
     @updated_at    = data[:updated_at]
-    @repository   = repository
+    @repository    = repository
 	end
 
 	def items

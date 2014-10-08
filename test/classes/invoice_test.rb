@@ -1,7 +1,11 @@
-require 'simplecov'
-SimpleCov.start
-require_relative 'test_helper'
-require_relative "../lib/invoice"
+# require 'simplecov'
+# SimpleCov.start
+# require_relative 'test_helper'
+gem 'minitest', '~> 5.2'
+require 'minitest/autorun'
+require 'minitest/pride'
+
+require_relative "../../lib/classes/invoice"
 
 class InvoiceTest < Minitest::Test
 
