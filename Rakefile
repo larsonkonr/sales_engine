@@ -20,3 +20,11 @@ namespace :sanitation do
   desc "Check both line length and method length"
   task :all => [:lines, :methods]
 end
+
+task default: :test
+desc ''
+task :test do
+  files = Dir["test/**/*_test.rb"]
+  require_tests = files.collect { |filename| "-r ./#{filename}" }.join(" ")
+  sh "ruby -e '' #{require_tests}"
+end
