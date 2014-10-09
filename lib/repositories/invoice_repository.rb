@@ -1,11 +1,14 @@
 require_relative '../classes/invoice'
+require_relative '../parsers/invoice_parser'
+
 
 class InvoiceRepository
 
-  attr_reader :invoices
+  attr_reader :invoices, :sales_engine
 
-  def initialize(invoices = [])
-    @invoices = invoices
+  def initialize(sales_engine, filepath)
+    @invoices = InvoiceParser.new.create_invoices(self, filepath)
+    @sales_engine = sales_engine
   end
 
   def find_by_id(id)

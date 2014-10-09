@@ -1,11 +1,13 @@
 require_relative '../classes/customer'
+require_relative '../parsers/customer_parser'
 
 class CustomerRepository
 
-  attr_reader :customers
+  attr_reader :customers, :sales_engine
 
-  def initialize(customers = [])
-    @customers = customers
+  def initialize(sales_engine, filepath)
+    @customers = CustomerParser.new.create_merchants(self, filepath)
+    @sales_engine = sales_engine
   end
 
   def find_by_first_name(first_name)

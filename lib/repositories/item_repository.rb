@@ -1,11 +1,14 @@
 require_relative '../classes/item'
+require_relative '../parsers/item_parser'
+
 
 class ItemRepository
 
-  attr_reader :items
+  attr_reader :items, :sales_engine
 
-  def initialize(items = [])
-    @items = items
+  def initialize(sales_engine, filepath)
+    @items = ItemParser.new.create_Items(self, filepath)
+    @sales_engine = sales_engine
   end
 
   def find_by_id(id)
