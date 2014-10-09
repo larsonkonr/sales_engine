@@ -6,7 +6,7 @@ class CustomerRepository
   attr_reader :customers, :sales_engine
 
   def initialize(sales_engine, filepath)
-    @customers = CustomerParser.new.create_merchants(self, filepath)
+    @customers = CustomerParser.new.create_customers(self, filepath)
     @sales_engine = sales_engine
   end
 
