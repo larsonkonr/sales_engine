@@ -9,11 +9,10 @@ require_relative "../../lib/classes/transaction"
 
 class TransactionTest < Minitest::Test
 
-  attr_reader :transaction
+  attr_reader :transaction, :repository
 
   def setup
-
-    @data = {
+    data = {
       id: '15',
       invoice_id: '12',
       credit_card_number: '4203696133194408',
@@ -23,7 +22,8 @@ class TransactionTest < Minitest::Test
       updated_at: '2012-03-27 14:54:11 UTC'
     }
 
-    @transaction = Transaction.new(@data)
+    @repository = Minitest::Mock.new
+    @transaction = Transaction.new(data, repository)
 
   end
 
@@ -37,4 +37,17 @@ class TransactionTest < Minitest::Test
     assert_equal transaction.updated_at, '2012-03-27 14:54:11 UTC'
   end
 
+  def test_it_exists
+    assert Transaction
+  end
+
+  def test_it_has_a_repository
+    assert transaction.repository
+  end
+
+  def test_it_delegates_invoices_to_repository
+    repository.expect(:find_invoices_from, [], ["15"])
+    transaction.invoices
+    repository.verify
+  end
 end

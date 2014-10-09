@@ -28,6 +28,10 @@ class ItemTest < Minitest::Test
 
   end
 
+  def test_it_exists
+    assert Item
+  end
+
   def test_data
     assert_equal item.id, '15'
     assert_equal item.name, 'Item Autem Minima'
@@ -38,24 +42,17 @@ class ItemTest < Minitest::Test
     assert_equal item.updated_at, '2012-03-27 14:54:11 UTC'
   end
 
-  def test_it_exists
-    skip
-    assert Item
-  end
-
   def test_it_has_a_repository
-    skip
     assert item.repository
   end
 
   def test_it_delegates_merchants_to_repository
-    repository.expect(:find_merchants_from, [], ["15"])
+    repository.expect(:find_merchants_from, [], ["53"])
     item.merchants
     repository.verify
   end
 
   def test_it_delegates_invoices_to_repository
-    skip
     repository.expect(:find_invoice_items_from, [], ["15"])
     item.invoice_items
     repository.verify
