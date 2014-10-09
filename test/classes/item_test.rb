@@ -9,11 +9,11 @@ require_relative "../../lib/classes/item"
 
 class ItemTest < Minitest::Test
 
-  attr_reader :item
+  attr_reader :item, :repository
 
   def setup
 
-    @data = {
+    data = {
       id: '15',
       name: 'Item Autem Minima',
       description: 'Nihil autem sit odio inventore deleniti. Est laudantium ratione distinctio laborum. Minus voluptatem nesciunt assumenda dicta voluptatum porro.',
@@ -23,7 +23,8 @@ class ItemTest < Minitest::Test
       updated_at: '2012-03-27 14:54:11 UTC'
     }
 
-    @item = Item.new(@data)
+    @repository = Minitest::Mock.new
+    @item = Item.new(data, repository)
 
   end
 
@@ -35,6 +36,29 @@ class ItemTest < Minitest::Test
     assert_equal item.merchant_id, '53'
     assert_equal item.created_at, '2012-03-27 14:54:11 UTC'
     assert_equal item.updated_at, '2012-03-27 14:54:11 UTC'
+  end
+
+  def test_it_exists
+    skip
+    assert Item
+  end
+
+  def test_it_has_a_repository
+    skip
+    assert item.repository
+  end
+
+  def test_it_delegates_merchants_to_repository
+    repository.expect(:find_merchants_from, [], ["15"])
+    item.merchants
+    repository.verify
+  end
+
+  def test_it_delegates_invoices_to_repository
+    skip
+    repository.expect(:find_invoice_items_from, [], ["15"])
+    item.invoice_items
+    repository.verify
   end
 
 end

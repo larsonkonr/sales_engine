@@ -8,7 +8,7 @@ require_relative "../../lib/classes/customer"
 
 class CustomerTest < Minitest::Test
 
-  attr_reader :customer
+  attr_reader :customer, :repository
 
   def setup
 
@@ -20,8 +20,13 @@ class CustomerTest < Minitest::Test
       updated_at: '2012-03-27 14:54:11 UTC'
     }
 
-    @customer = Customer.new(@data)
+    @repository = Minitest::Mock.new
+    @customer = Customer.new(@data, repository)
 
+  end
+
+  def test_it_exists
+    assert Customer
   end
 
   def test_data
@@ -32,4 +37,13 @@ class CustomerTest < Minitest::Test
     assert_equal customer.updated_at, '2012-03-27 14:54:11 UTC'
   end
 
+  def test_it_has_a_repository
+    assert customer.repository
+  end
+
+  def test_it_delegates_invoices_to_repository
+    repository.expect(:find_invoices_from, [], ["59"])
+    customer.invoices
+    repository.verify
+  end
 end

@@ -9,11 +9,10 @@ require_relative "../../lib/classes/invoice_item"
 
 class InvoiceItemTest < Minitest::Test
 
-  attr_reader :invoice_item
+  attr_reader :invoice_item, :repository
 
   def setup
-
-    @data = {
+    data = {
       item_id: '1920',
       invoice_id: '1',
       quantity: '9',
@@ -23,7 +22,8 @@ class InvoiceItemTest < Minitest::Test
       updated_at: '2012-03-27 14:54:11 UTC'
     }
 
-    @invoice_item = InvoiceItem.new(@data)
+    @repository = Minitest::Mock.new
+    @invoice_item = InvoiceItem.new(data, repository)
 
   end
 
@@ -37,4 +37,23 @@ class InvoiceItemTest < Minitest::Test
     assert_equal invoice_item.updated_at, '2012-03-27 14:54:11 UTC'
   end
 
+  def test_it_exists
+    assert InvoiceItem
+  end
+
+  def test_it_has_a_repository
+    assert invoice_item.repository
+  end
+
+  def test_it_delegates_items_to_repository
+    repository.expect(:find_items_from, [], ["1920"])
+    invoice_item.items
+    repository.verify
+  end
+
+  def test_it_delegates_invoices_to_repository
+    repository.expect(:find_invoices_from, [], ["15"])
+    invoice_item.invoices
+    repository.verify
+  end
 end

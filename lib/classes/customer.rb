@@ -9,12 +9,13 @@ class Customer
 
   attr_reader *ATTRIBUTES
 
-  def initialize(data)
+  def initialize(data, repository)
     @first_name    = data[:first_name]
     @last_name     = data[:last_name]
     @id            = data[:id]
     @created_at    = data[:created_at]
     @updated_at    = data[:updated_at]
+    @repository    = repository
   end
 
   def invoices

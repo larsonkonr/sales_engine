@@ -11,7 +11,7 @@ class Item
 
   attr_reader *ATTRIBUTES
 
-  def initialize(data)
+  def initialize(data, repository)
     @id             = data[:id]
     @name           = data[:name]
     @description    = data[:description]
