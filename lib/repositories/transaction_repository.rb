@@ -1,11 +1,14 @@
 require_relative '../classes/transaction'
+require_relative '../parsers/transaction_parser'
+
 
 class TransactionRepository
 
-  attr_reader :transactions
+  attr_reader :transactions, :sales_engine
 
-  def initialize(transactions = [])
-    @transactions = transactions
+  def initialize(sales_engine, filepath)
+    @transactions = TransactionParser.new.create_transactions(self, filepath)
+    @sales_engine = sales_engine
   end
 
   def find_by_id(id)
