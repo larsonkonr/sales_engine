@@ -38,6 +38,10 @@ class CustomerRepository
     customers.select { |customer| customer.first_name == first_name}
   end
 
+  def find_invoices_by_id(customer_id)
+    customer.invoices.select{ |customer| customer.id == id}
+  end
+
   def random
     customers.sample
   end

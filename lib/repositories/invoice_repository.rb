@@ -4,7 +4,7 @@ require_relative '../parsers/invoice_parser'
 
 class InvoiceRepository
 
-  attr_reader :invoices, :sales_engine
+  attr_reader :invoices, :sales_engine, :customer
 
   def inspect
     "#<#{self.class} #{@merchants.size} rows>"
@@ -39,8 +39,16 @@ class InvoiceRepository
     invoices.select {|invoice| invoice.updated_at == updated_at}
   end
 
+  def find_all_by_customer(customer_id)
+    invoices.select { |invoice| invoice.customer_id == customer_id}.size
+  end
+
   def random
     invoices.sample
+  end
+
+  def find_all_by_customer(id)
+    customer.select { |invoice| customer.id == id}
   end
 
 end

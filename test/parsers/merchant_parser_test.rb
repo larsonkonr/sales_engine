@@ -11,12 +11,12 @@ class MerchantParserTest < Minitest::Test
   #   rows = MerchantParser.load_file("test/fixtures/customers.csv")
   #   assert rows.count >= 10
   # end
-
-  def test_it_parses_merchants
-    merchants = MerchantParser.create_merchants("test/fixtures/customers.csv")
-    assert merchants.first.kind_of?(MerchantParser)
-  end
-
+  #
+  # def test_it_parses_merchants
+  #   merchants = MerchantParser.create_merchants("test/fixtures/customers.csv")
+  #   assert merchants.first.kind_of?(MerchantParser)
+  # end
+  #
   # def test_it_parses_customers_with_data
   #   skip
   #   customers =MerchantParser.load_customers("test/fixtures/customers.csv")

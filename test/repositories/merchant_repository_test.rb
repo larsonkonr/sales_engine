@@ -10,7 +10,7 @@ class MerchantRepositoryTest < Minitest::Test
 
   def setup
     @sales_engine = Minitest::Mock.new
-    @repository = MerchantRepository.new(sales_engine, './test/fixtures/merchants.csv')
+    @repository = MerchantRepository.new(sales_engine, './test/fixtures')
   end
 
 

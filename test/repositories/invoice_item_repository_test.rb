@@ -13,7 +13,7 @@ class InvoiceItemRepositoryTest < Minitest::Test
 
   def setup
     @sales_engine = Minitest::Mock.new
-    @repository = InvoiceItemRepository.new(sales_engine, './test/fixtures/invoice_items.csv')
+    @repository = InvoiceItemRepository.new(sales_engine, './test/fixtures')
   end
 
   def test_find_by_item_id

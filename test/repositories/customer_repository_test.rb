@@ -11,7 +11,7 @@ class CustomerRepositoryTest < Minitest::Test
 
   def setup
     @sales_engine = Minitest::Mock.new
-    @repository = CustomerRepository.new(sales_engine, './test/fixtures/customers.csv')
+    @repository = CustomerRepository.new(sales_engine, './test/fixtures')
   end
 
   def test_retrieve_by_first_name

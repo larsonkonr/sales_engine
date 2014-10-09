@@ -14,7 +14,7 @@ attr_reader :repository, :sales_engine
 
   def setup
     @sales_engine = Minitest::Mock.new
-    @repository = ItemRepository.new(sales_engine, './test/fixtures/items.csv')
+    @repository = ItemRepository.new(sales_engine, './test/fixtures')
   end
 
   def test_find_by_id
