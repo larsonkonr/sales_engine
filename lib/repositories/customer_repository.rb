@@ -34,6 +34,10 @@ class CustomerRepository
     customers.find {|customer| customer.updated_at == updated_at}
   end
 
+  def find_all_by_first_name(first_name)
+    customers.select { |customer| customer.first_name == first_name}
+  end
+
   def random
     customers.sample
   end
