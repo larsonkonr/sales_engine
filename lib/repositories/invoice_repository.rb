@@ -6,6 +6,10 @@ class InvoiceRepository
 
   attr_reader :invoices, :sales_engine
 
+  def inspect
+    "#<#{self.class} #{@merchants.size} rows>"
+  end
+
   def initialize(sales_engine, filepath)
     @invoices = InvoiceParser.new.create_invoices(self, filepath)
     @sales_engine = sales_engine

@@ -6,6 +6,10 @@ class ItemRepository
 
   attr_reader :items, :sales_engine
 
+  def inspect
+    "#<#{self.class} #{@merchants.size} rows>"
+  end
+
   def initialize(sales_engine, filepath)
     @items = ItemParser.new.create_items(self, filepath)
     @sales_engine = sales_engine

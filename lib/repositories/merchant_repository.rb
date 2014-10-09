@@ -5,6 +5,10 @@ class MerchantRepository
 
   attr_reader :merchants, :sales_engine
 
+  def inspect
+    "#<#{self.class} #{@merchants.size} rows>"
+  end
+
   def initialize(sales_engine, filepath)
     @merchants = MerchantParser.new.create_merchants(self, filepath)
     @sales_engine = sales_engine

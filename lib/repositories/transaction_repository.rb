@@ -6,6 +6,10 @@ class TransactionRepository
 
   attr_reader :transactions, :sales_engine
 
+  def inspect
+    "#<#{self.class} #{@merchants.size} rows>"
+  end
+
   def initialize(sales_engine, filepath)
     @transactions = TransactionParser.new.create_transactions(self, filepath)
     @sales_engine = sales_engine

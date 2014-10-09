@@ -5,6 +5,10 @@ class CustomerRepository
 
   attr_reader :customers, :sales_engine
 
+  def inspect
+    "#<#{self.class} #{@merchants.size} rows>"
+  end
+
   def initialize(sales_engine, filepath)
     @customers = CustomerParser.new.create_customers(self, filepath)
     @sales_engine = sales_engine
