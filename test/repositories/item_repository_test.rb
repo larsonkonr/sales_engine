@@ -10,81 +10,52 @@ require 'minitest/pride'
 require_relative '../../lib/repositories/item_repository'
 
 class ItemRepositoryTest < Minitest::Test
+attr_reader :repository, :sales_engine
+
+  def setup
+    @sales_engine = Minitest::Mock.new
+    @repository = ItemRepository.new(sales_engine, './test/fixtures/items.csv')
+  end
 
   def test_find_by_id
-    items = [
-    { id: '539', },
-    { id: '529', },
-    { id: '1832', },
-    ].map {|row| Item.new(row)}
-    assert_equal ["539"],
-    ItemRepository.new(items).find_by_id("539")
-    .map {|item| item.id}
+    results = repository.find_by_id("9")
+    assert_equal 1, results.count
+    assert_equal "Item Quo Magnam", results.first.name
   end
 
   def test_find_by_name
-    items = [
-    { name: 'Item Qui Esse', },
-    { name: 'Item Provident At', },
-    { name: 'Item Quo Magnam', },
-    ].map {|row| Item.new(row)}
-    assert_equal ["Item Quo Magnam"],
-    ItemRepository.new(items).find_by_name("Item Quo Magnam")
-    .map {|item| item.name}
+    results = repository.find_by_name("Item Nemo Facere")
+    assert_equal 1, results.count
+    assert_equal "4", results.first.id
   end
 
   def test_find_by_description
-    items = [
-    { description: 'Nihil autem sit odio inventore deleniti', },
-    { description: 'Numquam officiis reprehenderit', },
-    { description: 'Culpa deleniti adipisci voluptates', },
-    ].map {|row| Item.new(row)}
-    assert_equal ["Nihil autem sit odio inventore deleniti"],
-    ItemRepository.new(items).find_by_description("Nihil autem sit odio inventore deleniti")
-    .map {|item| item.description}
+    results = repository.find_by_description("Fuga assumenda occaecati hic dolorem tenetur dolores nisi. Est tenetur adipisci voluptatem vel. Culpa adipisci consequatur illo. Necessitatibus quis quo velit sed repellendus ut amet.")
+    assert_equal 1, results.count
+    assert_equal "Item Expedita Fuga", results.first.name
   end
 
   def test_find_by_unit_price
-    items = [
-    { unit_price: '75107', },
-    { unit_price: '68723', },
-    { unit_price: '34018', },
-    ].map {|row| Item.new(row)}
-    assert_equal ["34018"],
-    ItemRepository.new(items).find_by_unit_price("34018")
-    .map {|item| item.unit_price}
+    results = repository.find_by_unit_price("67076")
+    assert_equal 1, results.count
+    assert_equal "Item Autem Minima", results.first.name
   end
 
   def test_find_by_merchant_id
-    items = [
-    { merchant_id: '1', },
-    { merchant_id: '7', },
-    { merchant_id: '2', },
-    ].map {|row| Item.new(row)}
-    assert_equal ["7"],
-    ItemRepository.new(items).find_by_merchant_id("7")
-    .map {|item| item.merchant_id}
+    results = repository.find_by_merchant_id("1")
+    assert_equal 10, results.count
+    assert_equal "Item Qui Esse", results.first.name
   end
 
   def test_find_by_created_at
-    items = [
-    { created_at: '2012-03-27 14:54:09 UTC', },
-    { created_at: '2012-03-27 14:54:11 UTC', },
-    { created_at: '2012-03-27 14:54:10 UTC', },
-    ].map {|row| Item.new(row)}
-    assert_equal ["2012-03-27 14:54:10 UTC"],
-    ItemRepository.new(items).find_by_created_at("2012-03-27 14:54:10 UTC")
-    .map {|item| item.created_at}
+    results = repository.find_by_created_at("2012-03-27 14:53:59 UTC")
+    assert_equal 10, results.count
+    assert_equal "Item Qui Esse", results.first.name
   end
 
   def test_find_by_updated_at
-    items = [
-    { updated_at: '2012-03-27 14:54:10 UTC', },
-    { updated_at: '2012-03-27 14:54:11 UTC', },
-    { updated_at: '2012-03-27 14:54:09 UTC', },
-    ].map {|row| Item.new(row)}
-    assert_equal ["2012-03-27 14:54:09 UTC"],
-    ItemRepository.new(items).find_by_updated_at("2012-03-27 14:54:09 UTC")
-    .map {|item| item.updated_at}
+    results = repository.find_by_updated_at("2012-03-27 14:53:59 UTC")
+    assert_equal 10, results.count
+    assert_equal "Item Qui Esse", results.first.name
   end
 end

@@ -10,70 +10,46 @@ require 'minitest/pride'
 require_relative '../../lib/repositories/invoice_repository'
 
 class InvoiceRepositoryTest < Minitest::Test
+attr_reader :repository, :sales_engine
 
-  def test_find_by_id
-    invoices = [
-    { id: '8', },
-    { id: '900', },
-    { id: '127', },
-    ].map {|row| Invoice.new(row)}
-    assert_equal ["127"],
-    InvoiceRepository.new(invoices).find_by_id("127")
-    .map {|invoice| invoice.id}
+  def setup
+    @sales_engine = Minitest::Mock.new
+    @repository = InvoiceRepository.new(sales_engine, './test/fixtures/invoices.csv')
+  end
+
+  def test_retrieve_by_id
+    results = repository.find_by_id("7")
+    assert_equal 1, results.count
+    assert_equal "44", results.first.merchant_id
   end
 
   def test_find_by_customer_id
-    invoices = [
-    { customer_id: '1', },
-    { customer_id: '2', },
-    { customer_id: '3', },
-    ].map {|row| Invoice.new(row)}
-    assert_equal ["2"],
-    InvoiceRepository.new(invoices).find_by_customer_id("2")
-    .map {|invoice| invoice.customer_id}
+    results = repository.find_by_customer_id("2")
+    assert_equal 1, results.count
+    assert_equal "9", results.first.id
   end
 
   def test_find_by_merchant_id
-    invoices = [
-    { merchant_id: '26', },
-    { merchant_id: '75', },
-    { merchant_id: '33', },
-    ].map {|row| Invoice.new(row)}
-    assert_equal ["33"],
-    InvoiceRepository.new(invoices).find_by_merchant_id("33")
-    .map {|invoice| invoice.merchant_id}
+    results = repository.find_by_merchant_id("75")
+    assert_equal 1, results.count
+    assert_equal "2", results.first.id
   end
 
   def test_find_by_status
-    invoices = [
-    { status: 'shipped', },
-    { status: 'failed', },
-    { status: 'failed', },
-    ].map {|row| Invoice.new(row)}
-    assert_equal ["shipped"],
-    InvoiceRepository.new(invoices).find_by_status("shipped")
-    .map {|invoice| invoice.status}
+    results = repository.find_by_status("shipped")
+    assert_equal 10, results.count
+    assert_equal "1", results.first.id
   end
 
   def test_find_by_created_at
-    invoices = [
-    { created_at: '2012-03-27 14:54:09 UTC', },
-    { created_at: '2012-03-27 14:54:11 UTC', },
-    { created_at: '2012-03-27 14:54:10 UTC', },
-    ].map {|row| Invoice.new(row)}
-    assert_equal ["2012-03-27 14:54:10 UTC"],
-    InvoiceRepository.new(invoices).find_by_created_at("2012-03-27 14:54:10 UTC")
-    .map {|invoice| invoice.created_at}
+    results = repository.find_by_created_at("2012-03-06 21:54:10 UTC")
+    assert_equal 1, results.count
+    assert_equal "10", results.first.id
   end
-
+# find_by_updated_at
   def test_find_by_updated_at
-    invoices = [
-    { updated_at: '2012-03-27 14:54:10 UTC', },
-    { updated_at: '2012-03-27 14:54:11 UTC', },
-    { updated_at: '2012-03-27 14:54:09 UTC', },
-    ].map {|row| Invoice.new(row)}
-    assert_equal ["2012-03-27 14:54:09 UTC"],
-    InvoiceRepository.new(invoices).find_by_updated_at("2012-03-27 14:54:09 UTC")
-    .map {|invoice| invoice.updated_at}
+    results = repository.find_by_created_at("2012-03-25 09:54:09 UTC")
+    assert_equal 1, results.count
+    assert_equal "1", results.first.id
   end
 end
