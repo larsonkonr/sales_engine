@@ -30,4 +30,8 @@ class MerchantRepository
     merchants.select {|merchant| merchant.updated_at == updated_at}
   end
 
+  def random
+    merchants.sample
+  end
+
 end

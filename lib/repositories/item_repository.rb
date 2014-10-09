@@ -43,4 +43,8 @@ class ItemRepository
     items.select {|item| item.updated_at == updated_at}
   end
 
+  def random
+    items.sample
+  end
+
 end

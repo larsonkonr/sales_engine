@@ -39,4 +39,8 @@ class InvoiceRepository
     invoices.select {|invoice| invoice.updated_at == updated_at}
   end
 
+  def random
+    invoices.sample
+  end
+
 end

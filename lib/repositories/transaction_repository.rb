@@ -43,4 +43,8 @@ class TransactionRepository
     transactions.select {|transaction| transaction.updated_at == updated_at}
   end
 
+  def random
+    transactions.sample
+  end
+
 end

@@ -42,4 +42,9 @@ class InvoiceItemRepository
   def find_by_updated_at(updated_at)
     invoice_items.select{|invoice_item| invoice_item.updated_at == updated_at}
   end
+
+  def random
+    invoice_items.sample
+  end
+
 end
