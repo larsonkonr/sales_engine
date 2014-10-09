@@ -1,4 +1,5 @@
 class Customer
+  attr_reader :repository
 
   ATTRIBUTES = [:first_name,
                 :last_name,
@@ -14,5 +15,9 @@ class Customer
     @id            = data[:id]
     @created_at    = data[:created_at]
     @updated_at    = data[:updated_at]
+  end
+
+  def invoices
+    repository.find_invoices_from(id)
   end
 end

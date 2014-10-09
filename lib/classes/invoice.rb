@@ -1,4 +1,5 @@
 class Invoice
+  attr_reader :repository
 
   ATTRIBUTES = [:customer_id,
                 :merchant_id,
@@ -16,5 +17,21 @@ class Invoice
     @status         = data[:status]
     @created_at     = data[:created_at]
     @updated_at     = data[:updated_at]
+  end
+
+  def transactions
+    repository.find_find_transactions_from(id)
+  end
+
+  def invoice_items
+    repository.find_invoice_items_from(id)
+  end
+
+  def customers
+    repository.find_customers_from(customer_id)
+  end
+
+  def merchants
+    repository.find_merchants_from(merchant_id)
   end
 end
