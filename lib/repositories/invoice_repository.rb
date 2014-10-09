@@ -16,11 +16,11 @@ class InvoiceRepository
   end
 
   def find_by_id(id)
-    invoices.select { |invoice| invoice.id == id}
+    invoices.select { |invoice| invoice.id == id }
   end
 
   def find_by_customer_id(customer_id)
-    invoices.select { |invoice| invoice.customer_id == customer_id}
+    invoices.select { |invoice| invoice.customer_id == customer_id }
   end
 
   def find_by_merchant_id(merchant_id)
@@ -39,16 +39,11 @@ class InvoiceRepository
     invoices.select {|invoice| invoice.updated_at == updated_at}
   end
 
-  def find_all_by_customer(customer_id)
-    invoices.select { |invoice| invoice.customer_id == customer_id}.size
+  def find_all_by_customer_id(customer_id)
+    invoices.select { |invoice| invoice.customer_id == customer_id}
   end
 
   def random
     invoices.sample
   end
-
-  def find_all_by_customer(id)
-    customer.select { |invoice| customer.id == id}
-  end
-
 end

@@ -23,7 +23,7 @@ class CustomerRepository
   end
 
   def find_by_id(id)
-    customers.find { |customer| customer.id == id }
+    customers.find { |customer| customer.id == id.to_s }
   end
 
   def find_by_created_at(created_at)
@@ -36,10 +36,6 @@ class CustomerRepository
 
   def find_all_by_first_name(first_name)
     customers.select { |customer| customer.first_name == first_name}
-  end
-
-  def find_invoices_by_id(customer_id)
-    customer.invoices.select{ |customer| customer.id == id}
   end
 
   def random

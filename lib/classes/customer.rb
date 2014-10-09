@@ -19,6 +19,7 @@ class Customer
   end
 
   def invoices
-    repository.find_invoices_from(id)
+    repository.sales_engine.invoice_repository
+    .find_all_by_customer_id(id)
   end
 end
