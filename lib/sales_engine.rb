@@ -19,11 +19,11 @@ class SalesEngine
   end
 
   def startup
+    @customer_repository     = CustomerRepository.new(self, filepath)
     @merchant_repository     = MerchantRepository.new(self, filepath)
     @invoice_repository      = InvoiceRepository.new(self, filepath)
     @item_repository         = ItemRepository.new(self, filepath)
     @invoice_item_repository = InvoiceItemRepository.new(self, filepath)
-    @customer_repository     = CustomerRepository.new(self, filepath)
     @transaction_repository  = TransactionRepository.new(self, filepath)
   end
 end
