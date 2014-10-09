@@ -12,11 +12,10 @@ class SalesEngine
               :invoice_item_repository,
               :customer_repository,
               :transaction_repository,
-              :filepath,
+              :filepath
 
   def initialize(filepath)
     @filepath = filepath
-    @sales_engine = sales_engine
   end
 
   def startup
