@@ -43,6 +43,10 @@ class TransactionRepository
     transactions.find {|transaction| transaction.updated_at == updated_at}
   end
 
+  def find_all_by_result(result)
+    transactions.select { |transaction| transaction.result == result}
+  end
+
   def random
     transactions.sample
   end
