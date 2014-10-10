@@ -23,7 +23,7 @@ class Invoice
   end
 
   def transactions
-    repository.find_transactions_from(id)
+    [repository.find_transactions_from(id)]
   end
 
   def invoice_items

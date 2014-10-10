@@ -30,6 +30,14 @@ class MerchantRepository
     merchants.find {|merchant| merchant.updated_at == updated_at}
   end
 
+  def find_all_by_name(name)
+    merchants.select {|merchant| merchant.name == name}
+  end
+
+  def find_invoices_from(merchant_id)
+    sales_engine.invoice_repository.find_all_by_merchant_id(merchant_id)
+  end
+
   def random
     merchants.sample
   end

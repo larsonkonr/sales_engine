@@ -27,6 +27,10 @@ class InvoiceRepository
     invoices.find { |invoice| invoice.merchant_id == merchant_id}
   end
 
+  def find_all_by_merchant_id(merchant_id)
+    invoices.select { |invoice| invoice.merchant_id == merchant_id}
+  end
+
   def find_by_status(status)
     invoices.find { |invoice| invoice.status == status }
   end
@@ -65,6 +69,10 @@ class InvoiceRepository
 
   def find_customer_from(customer_id)
     sales_engine.customer_repository.find_by_id(customer_id)
+  end
+
+  def has_the_correct_number_of_them(invoice_id)
+    sales_engine.transaction_repository.find_by_invoice_id(invoice_id)
   end
 
   def random

@@ -21,6 +21,6 @@ class Merchant
 	end
 
 	def invoices
-		repository.find_invoices_from(id)
+		[repository.find_invoices_from(id)].flatten
 	end
 end
