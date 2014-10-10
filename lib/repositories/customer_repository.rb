@@ -23,7 +23,8 @@ class CustomerRepository
   end
 
   def find_by_id(id)
-    customers.find { |customer| customer.id == id.to_s }
+    # require"pry"; binding.pry
+    customers.find { |customer| customer.id == id.to_i }
   end
 
   def find_by_created_at(created_at)
