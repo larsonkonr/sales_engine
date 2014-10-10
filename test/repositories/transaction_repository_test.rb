@@ -18,13 +18,13 @@ attr_reader :repository, :sales_engine
   end
 
   def test_retrieve_by_id
-    results = repository.find_by_id("6")
+    results = repository.find_by_id(6)
     assert_equal 1, results.count
     assert_equal "4203696133194408", results.first.credit_card_number
   end
 
   def test_find_by_invoice_id
-    results = repository.find_by_invoice_id("5")
+    results = repository.find_by_invoice_id(5)
     assert_equal 1, results.count
     assert_equal "4", results.first.id
   end

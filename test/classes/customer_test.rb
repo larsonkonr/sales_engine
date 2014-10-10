@@ -15,7 +15,7 @@ class CustomerTest < Minitest::Test
     @data = {
       first_name: 'sam',
       last_name: 'Zephelopagus',
-      id: '59',
+      id: 59,
       created_at: '2012-03-27 14:54:11 UTC',
       updated_at: '2012-03-27 14:54:11 UTC'
     }
@@ -32,7 +32,7 @@ class CustomerTest < Minitest::Test
   def test_data
     assert_equal customer.first_name, 'sam'
     assert_equal customer.last_name, 'Zephelopagus'
-    assert_equal customer.id, '59'
+    assert_equal customer.id, 59
     assert_equal customer.created_at, '2012-03-27 14:54:11 UTC'
     assert_equal customer.updated_at, '2012-03-27 14:54:11 UTC'
   end
@@ -42,7 +42,7 @@ class CustomerTest < Minitest::Test
   end
 
   def test_it_delegates_invoices_to_repository
-    repository.expect(:find_invoices_from, [], ["59"])
+    repository.expect(:find_invoices_from, [], [59])
     customer.invoices
     repository.verify
   end

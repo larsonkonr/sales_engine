@@ -1,3 +1,5 @@
+require "bigdecimal"
+
 class Invoice
   attr_reader :repository
 

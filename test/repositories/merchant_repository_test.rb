@@ -21,7 +21,7 @@ class MerchantRepositoryTest < Minitest::Test
   end
 
   def test_find_by_id
-    results = repository.find_by_id("5")
+    results = repository.find_by_id(5)
     assert_equal 1, results.count
     assert_equal "Williamson Group", results.first.name
   end

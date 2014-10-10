@@ -13,8 +13,8 @@ class TransactionTest < Minitest::Test
 
   def setup
     data = {
-      id: '15',
-      invoice_id: '12',
+      id: 15,
+      invoice_id: 12,
       credit_card_number: '4203696133194408',
       credit_card_expiration_date: '',
       result: 'success',
@@ -28,8 +28,8 @@ class TransactionTest < Minitest::Test
   end
 
   def test_data
-    assert_equal transaction.id, '15'
-    assert_equal transaction.invoice_id, '12'
+    assert_equal transaction.id, 15
+    assert_equal transaction.invoice_id, 12
     assert_equal transaction.credit_card_number, '4203696133194408'
     assert_equal transaction.credit_card_expiration_date, ''
     assert_equal transaction.result, 'success'
@@ -46,7 +46,7 @@ class TransactionTest < Minitest::Test
   end
 
   def test_it_delegates_invoices_to_repository
-    repository.expect(:find_invoices_from, [], ["15"])
+    repository.expect(:find_invoices_from, [], [15])
     transaction.invoices
     repository.verify
   end

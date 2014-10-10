@@ -11,7 +11,7 @@ class MerchantTest < Minitest::Test
   attr_reader :merchant, :repository
 
   def setup
-    data = { id: '15',
+    data = { id: 15,
             name: 'Cummings-Thiel',
             created_at: '2012-03-27 14:54:11 UTC',
             updated_at: '2012-03-27 14:54:11 UTC'
@@ -27,7 +27,7 @@ class MerchantTest < Minitest::Test
 	end
 
   def test_data
-    assert_equal merchant.id, '15'
+    assert_equal merchant.id, 15
     assert_equal merchant.name, 'Cummings-Thiel'
     assert_equal merchant.created_at, '2012-03-27 14:54:11 UTC'
     assert_equal merchant.updated_at, '2012-03-27 14:54:11 UTC'
@@ -38,13 +38,13 @@ class MerchantTest < Minitest::Test
 	end
 
 	def test_it_delegates_items_to_repository
-		repository.expect(:find_items_from, [], ["15"])
+		repository.expect(:find_items_from, [], [15])
 		merchant.items
 		repository.verify
 	end
 
 	def test_it_delegates_invoices_to_repository
-		repository.expect(:find_invoices_from, [], ["15"])
+		repository.expect(:find_invoices_from, [], [15])
 		merchant.invoices
 		repository.verify
 	end

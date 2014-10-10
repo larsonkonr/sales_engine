@@ -7,7 +7,7 @@ class InvoiceItemRepository
   attr_reader :invoice_items, :sales_engine
 
   def inspect
-    "#<#{self.class} #{@merchants.size} rows>"
+    "#<#{self.class} #{@invoice_items.size} rows>"
   end
 
   def initialize(sales_engine, filepath)
@@ -50,7 +50,7 @@ class InvoiceItemRepository
   def find_all_by_invoice_id(invoice_id)
     invoice_items.select{|invoice_item| invoice_item.invoice_id == invoice_id}
   end
-  
+
   def random
     invoice_items.sample
   end
