@@ -47,6 +47,11 @@ class ItemRepository
     items.select { |item| item.name == name}
   end
 
+  def find_invoice_items_from(item_id)
+    sales_engine.invoice_item_repository.find_all_by_invoice_id(item_id).size
+
+  end
+
   def random
     items.sample
   end
