@@ -43,6 +43,10 @@ class ItemRepository
     items.find {|item| item.updated_at == updated_at}
   end
 
+  def find_all_by_name(name)
+    items.select { |item| item.name == name}
+  end
+
   def random
     items.sample
   end
