@@ -51,4 +51,9 @@ class ItemRepository
     items.sample
   end
 
+  def find_merchants_from(id)
+    # require "pry";binding.pry
+    sales_engine.merchant_repository.find_by_id(id)
+  end
+
 end
