@@ -75,6 +75,14 @@ class InvoiceRepository
     sales_engine.transaction_repository.find_by_invoice_id(invoice_id)
   end
 
+  def find_all_by_customer_and_merchant_id(customer_id, merchant_id)
+    invoices.select { |invoice| invoice.customer_id == customer_id && invoice.merchant_id == merchant_id }
+  end
+
+  def find_merchant_from(merchant_id)
+    sales_engine.merchant_repository.find_by_id(merchant_id)
+  end
+
   def random
     invoices.sample
   end

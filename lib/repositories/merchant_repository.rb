@@ -38,6 +38,14 @@ class MerchantRepository
     sales_engine.invoice_repository.find_all_by_merchant_id(merchant_id)
   end
 
+  def find_items_from(merchant_id)
+    sales_engine.item_repository.find_all_by_merchant_id(merchant_id)
+  end
+
+  def find_all_invoices_by_customer_and_merchant_id(customer_id, merchant_id)
+    sales_engine.invoice_repository.find_all_by_customer_and_merchant_id(customer_id, merchant_id)
+  end
+
   def random
     merchants.sample
   end

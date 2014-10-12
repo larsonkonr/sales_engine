@@ -47,6 +47,10 @@ class TransactionRepository
     transactions.select { |transaction| transaction.result == result}
   end
 
+  def find_invoice_from(invoice_id)
+    sales_engine.invoice_repository.find_by_id(invoice_id)
+  end
+
   def random
     transactions.sample
   end

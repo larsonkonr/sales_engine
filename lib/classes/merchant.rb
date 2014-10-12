@@ -17,10 +17,18 @@ class Merchant
 	end
 
 	def items
-		repository.find_items_from(id)
+		[repository.find_items_from(id)].flatten
 	end
 
 	def invoices
 		[repository.find_invoices_from(id)].flatten
 	end
+
+  def transactions_for_customer(customer_id)
+    invoices_for_customer(customer_id).map{|invoice| invoice.transactions}.flatten
+  end
+
+  def invoices_for_customer(customer_id)
+    repository.find_all_invoices_by_customer_and_merchant_id(customer_id, id)
+  end
 end

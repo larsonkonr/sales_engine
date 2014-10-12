@@ -47,9 +47,16 @@ class ItemRepository
     items.select { |item| item.name == name}
   end
 
-  def find_invoice_items_from(item_id)
-    sales_engine.invoice_item_repository.find_all_by_invoice_id(item_id).size
+  def find_all_by_id(id)
+    items.select { |item| item.id == id}
+  end
 
+  def find_invoice_items_from(item_id)
+    sales_engine.invoice_item_repository.find_all_by_item_id(item_id)
+  end
+
+  def find_all_by_merchant_id(merchant_id)
+    items.select { |item| item.merchant_id == merchant_id}
   end
 
   def random
@@ -57,8 +64,12 @@ class ItemRepository
   end
 
   def find_merchants_from(id)
-    # require "pry";binding.pry
     sales_engine.merchant_repository.find_by_id(id)
+  end
+
+  def most_revenue(limit)
+    #most_revenue returns the top n items ranked by most total revenue
+    items.sort_by(&:total_revenue).last(limit)
   end
 
 end

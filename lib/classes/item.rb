@@ -34,4 +34,8 @@ class Item
   def merchant
     repository.find_merchants_from(merchant_id)
   end
+
+  def total_revenue
+    #unit_price of each invoice item * the quantity == sum
+  end
 end

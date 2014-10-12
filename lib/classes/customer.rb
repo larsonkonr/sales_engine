@@ -21,4 +21,17 @@ class Customer
   def invoices
     repository.find_invoices_from(id)
   end
+
+  def transactions
+    invoices.map{|invoice| invoice.transactions}.flatten
+  end
+
+  def merchants
+    invoices.map{|invoice| invoice.merchant}
+  end
+
+  def favorite_merchant
+    merchants.max_by{|merchant| merchant.transactions_for_customer(id).size}
+  end
+
 end
