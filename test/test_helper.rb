@@ -1,7 +1,9 @@
+ENV['TERM'] = 'wat' # pretty pride :)
+require 'minitest/pride'
+
 gem 'minitest', '~> 5.2'
 require 'simplecov'; SimpleCov.start
 require 'minitest/autorun'
-require 'minitest/pride'
 
 require_relative 'repositories/customer_repository_test.rb'
 require_relative 'classes/item_test.rb'

@@ -18,38 +18,32 @@ attr_reader :repository, :sales_engine
   end
 
   def test_retrieve_by_id
-    results = repository.find_by_id("7")
-    assert_equal 1, results.count
-    assert_equal "44", results.first.merchant_id
+    results = repository.find_by_id(7)
+    assert_equal 44, results.merchant_id
   end
 
   def test_find_by_customer_id
-    results = repository.find_by_customer_id("2")
-    assert_equal 1, results.count
-    assert_equal "9", results.first.id
+    results = repository.find_by_customer_id(2)
+    assert_equal 9, results.id
   end
 
   def test_find_by_merchant_id
-    results = repository.find_by_merchant_id("75")
-    assert_equal 1, results.count
-    assert_equal "2", results.first.id
+    results = repository.find_by_merchant_id(75)
+    assert_equal 2, results.id
   end
 
   def test_find_by_status
     results = repository.find_by_status("shipped")
-    assert_equal 10, results.count
-    assert_equal "1", results.first.id
+    assert_equal 1, results.id
   end
 
   def test_find_by_created_at
     results = repository.find_by_created_at("2012-03-06 21:54:10 UTC")
-    assert_equal 1, results.count
-    assert_equal "10", results.first.id
+    assert_equal 10, results.id
   end
-# find_by_updated_at
+
   def test_find_by_updated_at
     results = repository.find_by_created_at("2012-03-25 09:54:09 UTC")
-    assert_equal 1, results.count
-    assert_equal "1", results.first.id
+    assert_equal 1, results.id
   end
 end

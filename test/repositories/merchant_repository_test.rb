@@ -16,25 +16,21 @@ class MerchantRepositoryTest < Minitest::Test
 
   def test_retrieve_by_name
     results = repository.find_by_name("Williamson Group")
-    assert_equal 2, results.count
-    assert_equal "5", results.first.id
+    assert_equal 5, results.id
   end
 
   def test_find_by_id
     results = repository.find_by_id(5)
-    assert_equal 1, results.count
-    assert_equal "Williamson Group", results.first.name
+    assert_equal "Williamson Group", results.name
   end
 
   def test_find_by_created_at
-    results = repository.find_by_created_at("2012-03-27 14:53:59 UTC")
-    assert_equal 9, results.count
-    assert_equal "Schroeder-Jerde", results.first.name
+    merchant = repository.find_by_created_at("2012-03-27 14:53:59 UTC")
+    assert_equal "Schroeder-Jerde", merchant.name
   end
 
   def test_find_by_updated_at
     results = repository.find_by_created_at("2012-03-27 14:54:00 UTC")
-    assert_equal 1, results.count
-    assert_equal "Bechtelar, Jones and Stokes", results.first.name
+    assert_equal "Bechtelar, Jones and Stokes", results.name
   end
 end
