@@ -34,7 +34,7 @@ class Invoice
     repository.find_customers_from(customer_id)
   end
 
-  def merchant
+  def merchants
     repository.find_merchant_from(merchant_id)
   end
 
