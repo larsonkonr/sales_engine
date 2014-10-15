@@ -1,3 +1,5 @@
+ENV['TERM'] = 'wat'
+
 namespace :sanitation do
   desc "Check line lengths & whitespace with Cane"
   task :lines do
@@ -22,8 +24,8 @@ namespace :sanitation do
 end
 
 task default: :test
-desc ''
-task :test do
+desc 'Run unit tests'
+task :test do |*x|
   files = Dir["test/**/*_test.rb"]
   require_tests = files.collect { |filename| "-r ./#{filename}" }.join(" ")
   sh "ruby -e '' #{require_tests}"
