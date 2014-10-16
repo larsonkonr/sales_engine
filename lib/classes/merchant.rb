@@ -14,18 +14,19 @@ class Merchant
     @created_at    = data[:created_at]
     @updated_at    = data[:updated_at]
     @repository    = repository
-	end
+  end
 
-	def items
-		[repository.find_items_from(id)].flatten
-	end
+  def items
+    [repository.find_items_from(id)].flatten
+  end
 
-	def invoices
-		[repository.find_invoices_from(id)].flatten
-	end
+  def invoices
+    [repository.find_invoices_from(id)].flatten
+  end
 
   def transactions_for_customer(customer_id)
-    invoices_for_customer(customer_id).map{|invoice| invoice.transactions}.flatten
+    invoices_for_customer(customer_id)
+    .map{|invoice| invoice.transactions}.flatten
   end
 
   def invoices_for_customer(customer_id)
